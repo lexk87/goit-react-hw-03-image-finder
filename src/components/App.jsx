@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Searchbar, ImageGallery, Loader } from 'components';
+import { Button, Searchbar, ImageGallery, Loader, ListEnd } from 'components';
 import { getImages } from 'services/ApiService';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -13,6 +13,19 @@ export class App extends Component {
         isLoading: false,
         isNotEmpty: false,
     };
+
+    async componentDidUpdate(_, prevState) {
+        const { searchQuery, pageNumber } = this.state;
+
+        if (prevState.pageNumber !== pageNumber && pageNumber !== 1) {
+            this.setState({ isLoading: true });
+            const result = await getImages(searchQuery, pageNumber);
+            this.setState(({ images }) => ({
+                images: [...images, ...result.hits],
+                isLoading: false,
+            }));
+        }
+    }
 
     onSubmit = async e => {
         e.preventDefault();
@@ -67,16 +80,28 @@ export class App extends Component {
         });
     };
 
+    loadMore = () => {
+        this.setState(({ pageNumber }) => ({
+            pageNumber: pageNumber + 1,
+        }));
+    };
+
     render() {
         const { images, pageNumber, totalPages, isLoading, isNotEmpty } =
             this.state;
+        const isNotListEnd = pageNumber < totalPages;
 
         return (
             <>
                 <Searchbar onSubmit={this.onSubmit} />
                 {isNotEmpty && <ImageGallery images={images} />}
-                <Loader />
-                <Button />
+                {isLoading ? (
+                    <Loader />
+                ) : (
+                    isNotEmpty &&
+                    isNotListEnd && <Button onClick={this.loadMore} />
+                )}
+                {!isNotListEnd && isNotEmpty && <ListEnd />}
 
                 <ToastContainer
                     position="top-center"

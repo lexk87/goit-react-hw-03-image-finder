@@ -1,5 +1,5 @@
-import PropTypes from 'prop-types';
 import { RotatingLines } from 'react-loader-spinner';
+import { LoaderWrapper } from './Loader.styled';
 
 export const Loader = () => {
     return (
