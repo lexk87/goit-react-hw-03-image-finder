@@ -68,7 +68,8 @@ export class App extends Component {
     };
 
     render() {
-        const { images, pageNumber, totalPages, isLoading } = this.state;
+        const { images, pageNumber, totalPages, isLoading, isNotEmpty } =
+            this.state;
 
         return (
             <>
