@@ -10,7 +10,8 @@ export class App extends Component {
         searchQuery: null,
         pageNumber: 1,
         totalPages: null,
-        loading: false,
+        isLoading: false,
+        isNotEmpty: false,
     };
 
     onSubmit = async e => {
@@ -19,6 +20,7 @@ export class App extends Component {
         const pageNumber = 1;
 
         if (inputValue === '') {
+            this.setState({ isNotEmpty: false });
             toast.warn('Your search request is empty!', {
                 position: 'top-center',
                 autoClose: 1000,
@@ -32,11 +34,12 @@ export class App extends Component {
             return;
         }
 
-        this.setState({ loading: true });
+        this.setState({ isLoading: true });
         const result = await getImages(inputValue, pageNumber);
-        this.setState({ loading: false });
+        this.setState({ isLoading: false });
 
         if (result.hits.length === 0) {
+            this.setState({ isNotEmpty: false });
             toast.error(
                 'Sorry, there are no images matching your search request.',
                 {
@@ -60,14 +63,17 @@ export class App extends Component {
             searchQuery: inputValue,
             pageNumber: pageNumber,
             totalPages: totalPages,
+            isNotEmpty: true,
         });
     };
 
     render() {
+        const { images, pageNumber, totalPages, isLoading } = this.state;
+
         return (
             <>
                 <Searchbar onSubmit={this.onSubmit} />
-                <ImageGallery />
+                {isNotEmpty && <ImageGallery images={images} />}
                 <Loader />
                 <Button />
 
