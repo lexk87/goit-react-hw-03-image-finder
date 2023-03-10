@@ -35,8 +35,8 @@ export class App extends Component {
         if (inputValue === '') {
             this.setState({ isNotEmpty: false });
             toast.warn('Your search request is empty!', {
-                position: 'top-center',
-                autoClose: 1000,
+                position: 'top-right',
+                autoClose: 3000,
                 hideProgressBar: false,
                 closeOnClick: true,
                 pauseOnHover: true,
@@ -56,8 +56,8 @@ export class App extends Component {
             toast.error(
                 'Sorry, there are no images matching your search request.',
                 {
-                    position: 'top-center',
-                    autoClose: 1000,
+                    position: 'top-right',
+                    autoClose: 3000,
                     hideProgressBar: false,
                     closeOnClick: true,
                     pauseOnHover: true,
@@ -104,8 +104,8 @@ export class App extends Component {
                 {!isNotListEnd && isNotEmpty && <ListEnd />}
 
                 <ToastContainer
-                    position="top-center"
-                    autoClose={1000}
+                    position="top-right"
+                    autoClose={3000}
                     hideProgressBar={false}
                     newestOnTop={false}
                     closeOnClick

@@ -5,10 +5,6 @@ export const Searchbar = ({ onSubmit }) => {
     return (
         <Header>
             <Form onSubmit={onSubmit}>
-                <Button type="submit" area-label="Search">
-                    <SearchIcon size="26px" />
-                </Button>
-
                 <Input
                     name="searchField"
                     type="text"
@@ -16,6 +12,10 @@ export const Searchbar = ({ onSubmit }) => {
                     autofocus
                     placeholder="Search images and photos"
                 />
+
+                <Button type="submit" area-label="Search">
+                    <SearchIcon size="30px" />
+                </Button>
             </Form>
         </Header>
     );
