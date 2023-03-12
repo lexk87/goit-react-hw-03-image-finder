@@ -9,7 +9,7 @@ export const Header = styled.header`
     top: 0;
     left: 0;
     height: 80px;
-    background-color: #00af1a;
+    background-color: #2d3035;
     width: 100%;
     z-index: 999;
 `;
@@ -29,7 +29,7 @@ export const Button = styled.button`
     transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
     &:hover,
     &:focus {
-        background-color: rgba(255, 255, 255, 0.2);
+        background-color: rgba(255, 255, 255, 0.1);
     }
 `;
 

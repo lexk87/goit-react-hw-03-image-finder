@@ -9,11 +9,11 @@ export const Searchbar = ({ onSubmit }) => {
                     name="searchField"
                     type="text"
                     autocomplete="off"
-                    autofocus
+                    autoFocus
                     placeholder="Search images and photos"
                 />
 
-                <Button type="submit" area-label="Search">
+                <Button type="submit" area-label="Search" title="Search">
                     <SearchIcon size="30px" />
                 </Button>
             </Form>

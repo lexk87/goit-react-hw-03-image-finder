@@ -8,7 +8,9 @@
 
 body {
     margin: 0;
-    padding: 40px 0;
+    padding-top: 110px;
+    padding-bottom: 30px;
+    background-color: #22252a;
 }
 
 body,

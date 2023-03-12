@@ -31,7 +31,7 @@ export class Modal extends Component {
         const { image, tags } = this.props;
 
         return createPortal(
-            <ModalOverlay onClick={this.props.overlayClick}>
+            <ModalOverlay onClick={this.overlayClick}>
                 <ModalBody>
                     <ModalImg src={image} alt={tags} />
                 </ModalBody>
